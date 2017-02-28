@@ -1,0 +1,38 @@
+<iscontent type="text/html" charset="UTF-8" compact="true" />
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>DW Script console</title>
+    <link rel="shortcut icon" type="image/x-icon" href="${URLUtils.staticURL('/css/favicon.ico')}" />
+    <link rel="stylesheet" href="${URLUtils.staticURL('/lib/codemirror.css')}">
+    <script src="${URLUtils.staticURL('/lib/jquery-1.7.2.min.js')}"></script>
+    <script src="${URLUtils.staticURL('/lib/codemirror.js')}"></script>
+    <script src="${URLUtils.staticURL('/lib/javascript.js')}"></script>
+    <link rel="stylesheet" href="${URLUtils.staticURL('/theme/night.css')}">
+    <link rel="stylesheet" href="${URLUtils.staticURL('/css/docs.css')}">
+  </head>
+  <body>
+  	<h5>DW Script console</h5>
+  	<iscomment>
+	<isinclude template="replacements/lastOmsOrder" />
+		<script>
+			jQuery(function(){
+				jQuery('#replace_action_ex').click(function(){
+					if(jQuery('#replace_action').length > 0){
+						if(jQuery('#replace_action').val() != ''){
+							editor.setValue(eval(jQuery('#replace_action').val()));
+						}
+					}
+				});
+			});
+		</script>
+		<div>Replace: <select id="replace_action">
+			<option value="">----</option>
+			<option value="last_oms_order">Last OMS Order debugging</option>
+		</select><button id="replace_action_ex"><img src="${URLUtils.staticURL('/css/favicon.ico')}" style="vertical-align: middle" /> Execute</button></div>
+		<isset name="code" value="${(pdict.CurrentForms.cmd.commands.getValue() == null) ? '' : pdict.CurrentForms.cmd.commands.getValue()}" scope="page" />
+	</iscomment>
+	<isreplace/>
+	<script src="${URLUtils.staticURL('/lib/complete.js')}"></script>
+  </body>
+</html>

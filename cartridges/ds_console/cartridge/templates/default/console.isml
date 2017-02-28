@@ -1,0 +1,8 @@
+<iscontent type="text/html" charset="UTF-8" compact="true" />
+<isdecorate template="pt_console"/>
+	<form action="${URLUtils.httpContinue()}" method="post" id="${pdict.CurrentForms.cmd.htmlName}" autocomplete="off">
+		<textarea name="${pdict.CurrentForms.cmd.commands.htmlName}" id="code" cols="50" rows="7">${ empty(pdict.CustomCode) ? pdict.CustomComments : pdict.CustomCode }</textarea>
+		<button type="submit" value="Evaluate" name="${pdict.CurrentForms.cmd.eval.htmlName}"><img src="${URLUtils.staticURL('/css/favicon.ico')}" style="vertical-align: middle" /> Evaluate</button>
+	</form>
+	<pre><code><isprint value="${ pdict.Result || '' }" encoding="off" /><span class="error"><isprint value="${ pdict.CustomError || '' }" encoding="off" /></span></code></pre>
+</isdecorate>
