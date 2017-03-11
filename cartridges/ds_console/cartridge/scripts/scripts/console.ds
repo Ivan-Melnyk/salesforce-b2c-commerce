@@ -6,7 +6,7 @@
 *	@input CurrentSession : Object The CurrentSession Object
 *	@input CurrentRequest : Object The CurrentRequest Object
 *	@input CurrentForms : Object The CurrentForms Object
-*   @output Result : String The result string
+*	@output Result : String The result string
 *
 */
 
@@ -39,7 +39,10 @@ function execute( args : PipelineDictionary ) : Number
 
 function ds_debug( obj, justTop )
 {
-	var justTop = justTop || false;
+	var justTop = true;
+	if (typeof(justTop) == 'boolean') {
+		justTop = !!justTop;
+	}
 	//debugging object
 	var ds_count : Number = 0;
 	var out = "";
@@ -95,7 +98,7 @@ function ds_debug( obj, justTop )
 	
 	//if it's not object
 	if( typeof( obj ) != 'object' || empty(obj)){
-		trace('<span style="color:#00CC00;">' + typeof( obj ) + "</span>: " + String(obj));
+		trace('<span style="color:#00CC00;">' + (obj === null ? 'null' : typeof( obj )) + "</span>: " + String(obj));
 		return;
 	}
 	
@@ -144,7 +147,7 @@ function ds_debug( obj, justTop )
 			if (typeof(_value) == 'object' && !justTop)
 			{
 				if(empty(_value)){
-					ds_prn('<span style="color:#800;">' + key + '</span> : <span style="color:#050;">object</span> { }' );
+					ds_prn('<span style="color:#800;">' + key + '</span> : <span style="color:#050;">'+(_value === null ? 'null' : typeof(_value))+'</span> { }' );
 				}else{
 					ds_prn('<span style="color:#800;">' + key + '</span> : <span style="color:#050;">object</span> { ');
 					ds_count++;
@@ -157,7 +160,7 @@ function ds_debug( obj, justTop )
 			if (_error) {
 				ds_prn('<b><span style="color:#f00;">' + key + '</span> : <span style="color:#f00;">ERROR</span> = <span style="color:#f00;">' + _value + '</span></b>');
 			} else {
-				ds_prn('<span style="color:#666;">' + key + '</span> : <span style="color:#0A0;">' + typeof(_value) + '</span> = <span style="color:#00A;">' + ((typeof(_value) != 'object' && typeof(_value) != 'function') ? _value : typeof(_value)) + '</span>');
+				ds_prn('<span style="color:#666;">' + key + '</span> : <span style="color:#0A0;">' + typeof(_value) + '</span> = <span style="color:#00A;">' + ((typeof(_value) != 'object' && typeof(_value) != 'function') ? _value : (_value === null ? 'null' : typeof(_value))) + '</span>');
 			}
 		}
 	}

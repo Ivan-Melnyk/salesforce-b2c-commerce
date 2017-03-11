@@ -32,14 +32,6 @@
           <key-binding alias="Result" key="To_2"/>
           <key-binding alias="&quot;&quot;" key="From_3"/>
           <key-binding alias="CustomError" key="To_3"/>
-          <key-binding alias="&quot;//JUST FOR REMINDER&quot;" key="From_4"/>
-          <key-binding alias="CustomComments" key="To_4"/>
-          <key-binding alias="CustomComments + &quot;\n//You can use 'CurrentSession', 'CurrentRequest', 'CurrentCustomer' global objects\n&quot;" key="From_5"/>
-          <key-binding alias="CustomComments" key="To_5"/>
-          <key-binding alias="CustomComments + &quot;//as pdict.CurrentSession, pdict.CurrentRequest, pdict.CurrentCustomer\n&quot;" key="From_6"/>
-          <key-binding alias="CustomComments" key="To_6"/>
-          <key-binding alias="CustomComments + &quot;//Also you can use Basket inside your code, without any predefines\n&quot;" key="From_7"/>
-          <key-binding alias="CustomComments" key="To_7"/>
           <key-binding alias="null" key="From_8"/>
           <key-binding alias="null" key="To_8"/>
           <key-binding alias="null" key="From_9"/>

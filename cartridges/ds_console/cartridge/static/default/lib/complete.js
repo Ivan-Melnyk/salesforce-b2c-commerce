@@ -22,7 +22,9 @@
 
   var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
     lineNumbers: true,
-    theme: "night",
+    theme: "the-matrix",
+    matchBrackets: true,
+    mode: "text/typescript",
     onKeyEvent: function(i, e) {
       // Hook into ctrl-space
       if (e.keyCode == 32 && (e.ctrlKey || e.metaKey) && !e.altKey) {
@@ -30,6 +32,10 @@
         return startComplete();
       }
     }
+  });
+  
+  $("#tooltip").tooltip({
+	  position: { my: "left top", at: "left bottom", collision: "none" }
   });
 
   function startComplete() {
