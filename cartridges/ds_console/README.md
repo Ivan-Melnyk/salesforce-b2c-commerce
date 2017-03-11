@@ -10,7 +10,7 @@ This cartridge allows you to test/perform Demandware script on a fly without cha
 &emsp;`Administration -> Sites -> Manage Sites -> [Your Site] -> Settings (Tab) -> Cartridges`
 4. Open Storefront in your Browser with pipeline [IDS-Show](https://host-name/on/demandware.store/Sites-Site-ID-Site/default/IDS-Show)
 5. Now you have to be able to see the editor of Demandware script<br/>
-![Demandware Console Demo](https://github.com/vmmelnic/sfcc/cartridges/ds_console/dsconsole_demo.png "Demandware Console Demo")
+![Demandware Console Demo](https://github.com/vmmelnic/sfcc/raw/master/cartridges/ds_console/dsconsole_demo.png "Demandware Console Demo")
 
 ## Method Detail
 **debug**<br/>
