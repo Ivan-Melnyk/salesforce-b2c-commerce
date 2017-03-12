@@ -5,7 +5,7 @@ This cartridge allows you to test/perform Demandware script on a fly without cha
 
 ##HowTo
 1. Download cartridge on your computer
-2. Upload cartridge to your sadbox (using eclipse studio or your favourite webdav client tool)
+2. Upload cartridge to your sandbox (using eclipse studio or your favourite webdav client tool)
 3. Add the cartridge **`ds_console`** to your cartridge's path of your Site Settings<br/>
 &emsp;`Administration -> Sites -> Manage Sites -> [Your Site] -> Settings (Tab) -> Cartridges`
 4. Open Storefront in your Browser with pipeline [IDS-Show](https://host-name/on/demandware.store/Sites-Site-ID-Site/default/IDS-Show)
@@ -39,3 +39,6 @@ debug(product); // or debug(product, false) - be careful with using second param
 var result = 0.1 + 0.2;
 trace(result);
 ```
+
+### Common Tips
+You can also use the global objects `request`, `session`, `customer` and `Basket`.
