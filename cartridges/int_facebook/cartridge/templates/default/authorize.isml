@@ -1,0 +1,32 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<html>
+<head>
+	<title>OAuth Test</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		div { margin: 10px 0px 10px 0px; }
+	</style>
+</head>
+<body>
+
+	<h1>Login</h1>
+
+	<div>
+		This should be a login page. If the user successfully logs, they should 
+		be redirect to this link: <a href="${pdict.redirectURISuccess}">Complete Account Link</a>
+	</div>
+
+	<div>
+		Account linking token: ${pdict.accountLinkingToken}
+	</div>
+
+	<div>
+		Redirect URI: ${pdict.redirectURI}
+	</div>
+
+	<div>
+		Redirect URI Successful: ${pdict.redirectURISuccess}
+	</div>
+
+</body>
+</html>

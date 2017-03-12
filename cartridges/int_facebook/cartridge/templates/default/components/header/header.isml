@@ -1,0 +1,96 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+
+<iscomment>SLOT CONFIGURATION:  SLOT/ID: header-banner</iscomment>
+<div class="header-banner">
+	<isslot id="header-banner" description="Slot above the site header" context="global" />
+</div>
+<div class="top-banner" role="banner">
+	<button class="menu-toggle"><i class="menu-icon fa fa-bars"></i><span class="visually-hidden">Menu</span></button>
+	<h1 class="primary-logo">
+		<a href="${URLUtils.url('Home-Show')}" title="${Resource.msgf('global.homepage.tooltip', 'locale', null, Resource.msg('global.storename', 'locale', null), Resource.msg('global.home', 'locale', null) )}">
+			<img src="${URLUtils.staticURL('/images/logo.png')}" alt="${Resource.msg('global.storename', 'locale', null)}">
+			<span class="visually-hidden">${Resource.msg('global.storename', 'locale', null)}</span>
+		</a>
+	</h1>
+
+	<nav id="navigation" role="navigation">
+
+		<div class="header-search">
+			<isinclude template="search/simplesearch"/>
+		</div>
+		
+		<!--- FaceBook "Send to Messenger" plugin --->
+		<script>
+
+			window.fbAsyncInit = function() {
+				FB.init({
+					appId: 'APP_ID',
+					xfbml: true,
+					version: 'v2.6'
+				});
+			};
+			(function(d, s, id){
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) {return;}
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_US/sdk.js";
+				//js.src = "//connect.facebook.net/en_US/sdk/debug.js";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		
+		</script>
+		<div style="position:absolute;">
+			<iscomment>
+			<div>
+				<p>The "Send to Messenger" plugin will trigger an authentication callback to your webhook.</p>
+				<div class="fb-send-to-messenger" 
+					messenger_app_id='APP_ID'
+					page_id='PAGE_ID'
+					data-ref="PASS_THROUGH_PARAM"
+					color="blue"
+					size="standard">
+				</div>
+			</div>
+			</iscomment>
+			<div style="position:relative;top:-23px;left:208px;">
+				<!---<p>The "Message Us" plugin takes the user directly to Messenger and into a thread with your Page.</p>--->
+				<div class="fb-messengermessageus"
+					messenger_app_id='APP_ID'
+					page_id='PAGE_ID'
+					color="blue"
+					size="standard">
+				</div>
+			</div>
+			<br clear="all"/>
+		</div>
+
+		<iscomment>INCLUDE: category menu</iscomment>
+		<isinclude url="${URLUtils.url('Home-IncludeHeaderMenu')}"/>
+
+		<!--  utility user menu -->
+		<ul class="menu-utility-user">
+
+			<iscomment>Store Locator</iscomment>
+			<li class="stores">
+				<a href="${URLUtils.http('Stores-Find')}" title="${Resource.msg('global.header.storelocator.label', 'locale', null)}">
+					<i class="fa fa-map-marker"></i>
+					<span>${Resource.msg('global.header.storelocator', 'locale', null)}</span>
+				</a>
+			</li>
+
+			<iscomment>INCLUDE: Customer login information, login, etc. (contains personal information, do not cache)</iscomment>
+			<isinclude url="${URLUtils.url('Home-IncludeHeaderCustomerInfo')}"/>
+
+		</ul>
+
+		<iscomment>Country Selector</iscomment>
+		<isinclude template="components/header/countryselector"/>
+
+	</nav>
+
+	<iscomment>INCLUDE: Mini-cart, do not cache</iscomment>
+	<div id="mini-cart">
+		<isinclude url="${URLUtils.url('Cart-MiniCart')}"/>
+	</div>
+
+</div><!-- /header -->
