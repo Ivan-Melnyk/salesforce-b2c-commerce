@@ -3,7 +3,7 @@
 This cartridge allows you to test/perform Demandware script on a fly without changing any file in your existing cartridges.<br/>
 *Please note that the code snippets which you gonna test/perform with using this cartridge must be written with considering only storefront context, so for example, if you wanna try to test some logic with reading/writing files from/to IMPEX folder - it will not work.*
 
-##HowTo
+## HowTo
 1. Download cartridge on your computer
 2. Upload cartridge to your sandbox (using eclipse studio or your favourite webdav client tool)
 3. Add the cartridge **`ds_console`** to your cartridge's path of your Site Settings<br/>
@@ -20,7 +20,6 @@ This cartridge allows you to test/perform Demandware script on a fly without cha
 &emsp;&emsp;`object` - The object which will be printed in output. Can be also any kind of variable, like `String`, `Number`, `Object`, `Array`, etc.<br/>
 &emsp;&emsp;`noRecursively` - If true - no recursive, false - recursively print all children's objects. By default = true.
 
---
 **trace**<br/>
 **`trace`**`(output : String) : void`<br/>
 &emsp;Will print the value of `output` parameter.<br/>
