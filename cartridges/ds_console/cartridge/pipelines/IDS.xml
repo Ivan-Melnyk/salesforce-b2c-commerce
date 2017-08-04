@@ -17,26 +17,21 @@
       </node>
       <simple-transition/>
       <node>
-        <call-node start-name-ref="IDS-GetExistingBasket"/>
-        <node-display x="0" y="1"/>
-      </node>
-      <simple-transition/>
-      <node>
-        <pipelet-node pipelet-name="Assign" pipelet-set-identifier="bc_api">
-          <config-property key="Transactional" value="false"/>
-          <key-binding alias="(CurrentForms.cmd.commands.getValue()||&quot;&quot;)" key="From_0"/>
-          <key-binding alias="CustomCode" key="To_0"/>
-          <key-binding alias="&quot;&quot;" key="From_1"/>
-          <key-binding alias="ScriptLog" key="To_1"/>
-          <key-binding alias="&quot;&quot;" key="From_2"/>
-          <key-binding alias="Result" key="To_2"/>
-          <key-binding alias="&quot;&quot;" key="From_3"/>
-          <key-binding alias="CustomError" key="To_3"/>
-          <key-binding alias="null" key="From_8"/>
-          <key-binding alias="null" key="To_8"/>
-          <key-binding alias="null" key="From_9"/>
-          <key-binding alias="null" key="To_9"/>
+        <pipelet-node pipelet-name="GetBasket" pipelet-set-identifier="bc_api">
+          <config-property key="Create" value="false"/>
+          <key-binding alias="Basket" key="Basket"/>
+          <key-binding alias="StoredBasket" key="StoredBasket"/>
         </pipelet-node>
+        <node-display x="0" y="1"/>
+        <branch basename="b2" source-connector="error">
+          <transition target-connector="in2" target-path="./+1"/>
+        </branch>
+      </node>
+      <transition target-connector="in1" target-path="./+1"/>
+    </segment>
+    <segment>
+      <node>
+        <join-node/>
         <node-display x="0" y="1"/>
       </node>
       <simple-transition/>
@@ -47,13 +42,10 @@
           <config-property key="ScriptFile" value="ds_console:scripts/console.ds"/>
           <config-property key="Timeout" value="300"/>
           <key-binding alias="ScriptLog" key="ScriptLog"/>
-          <key-binding alias="CustomCode" key="Request"/>
+          <key-binding alias="CustomCode" key="CustomCode"/>
+          <key-binding alias="CustomError" key="CustomError"/>
           <key-binding alias="Result" key="Result"/>
-          <key-binding alias="CurrentCustomer" key="CurrentCustomer"/>
           <key-binding alias="Basket" key="Basket"/>
-          <key-binding alias="CurrentRequest" key="CurrentRequest"/>
-          <key-binding alias="CurrentSession" key="CurrentSession"/>
-          <key-binding alias="CurrentForms" key="CurrentForms"/>
         </pipelet-node>
         <node-display x="0" y="1"/>
         <branch basename="b2" source-connector="error">
@@ -72,33 +64,6 @@
         <join-node/>
         <node-display x="0" y="1"/>
       </node>
-      <simple-transition/>
-      <node>
-        <pipelet-node pipelet-name="Assign" pipelet-set-identifier="bc_api">
-          <config-property key="Transactional" value="false"/>
-          <key-binding alias="ScriptLog.match(&quot;Error:&quot;, &quot;g&quot;)" key="From_0"/>
-          <key-binding alias="CustomError" key="To_0"/>
-          <key-binding alias="(CustomError?&quot;&quot;:(String(Result) + ScriptLog))" key="From_1"/>
-          <key-binding alias="Result" key="To_1"/>
-          <key-binding alias="(CustomError?String(ScriptLog):&quot;&quot;)" key="From_2"/>
-          <key-binding alias="CustomError" key="To_2"/>
-          <key-binding alias="null" key="From_3"/>
-          <key-binding alias="null" key="To_3"/>
-          <key-binding alias="null" key="From_4"/>
-          <key-binding alias="null" key="To_4"/>
-          <key-binding alias="null" key="From_5"/>
-          <key-binding alias="null" key="To_5"/>
-          <key-binding alias="null" key="From_6"/>
-          <key-binding alias="null" key="To_6"/>
-          <key-binding alias="null" key="From_7"/>
-          <key-binding alias="null" key="To_7"/>
-          <key-binding alias="null" key="From_8"/>
-          <key-binding alias="null" key="To_8"/>
-          <key-binding alias="null" key="From_9"/>
-          <key-binding alias="null" key="To_9"/>
-        </pipelet-node>
-        <node-display x="0" y="1"/>
-      </node>
       <simple-transition>
         <transition-display>
           <bend-point relative-to="source" x="0" y="1"/>
@@ -110,77 +75,13 @@
         </interaction-continue-node>
         <node-display x="0" y="1"/>
       </node>
-      <transition target-connector="in2" target-path="./-1">
+      <transition target-connector="in2" target-path="./-2">
         <transition-display>
-          <bend-point relative-to="source" x="-1" y="0"/>
+          <bend-point relative-to="source" x="0" y="1"/>
+          <bend-point relative-to="source" x="-1" y="1"/>
           <bend-point relative-to="target" x="-1" y="0"/>
         </transition-display>
       </transition>
-    </segment>
-  </branch>
-  <branch basename="GetExistingBasket">
-    <segment>
-      <node>
-        <start-node call-mode="private" name="GetExistingBasket" secure="false"/>
-        <node-display x="4" y="0"/>
-      </node>
-      <simple-transition>
-        <transition-display>
-          <bend-point relative-to="source" x="0" y="1"/>
-        </transition-display>
-      </simple-transition>
-      <node>
-        <decision-node condition-key="typeof(Basket) == 'undefined' || empty(Basket)" condition-operator="expr"/>
-        <node-display x="0" y="1"/>
-        <branch basename="b2" source-connector="yes">
-          <transition target-connector="in">
-            <transition-display>
-              <bend-point relative-to="source" x="0" y="1"/>
-            </transition-display>
-          </transition>
-          <segment>
-            <node>
-              <pipelet-node pipelet-name="GetBasket" pipelet-set-identifier="bc_api">
-                <config-property key="Create" value="false"/>
-                <key-binding alias="Basket" key="Basket"/>
-                <key-binding alias="StoredBasket" key="StoredBasket"/>
-              </pipelet-node>
-              <node-display x="0" y="1"/>
-              <branch basename="b2" source-connector="error">
-                <transition target-connector="in">
-                  <transition-display>
-                    <bend-point relative-to="source" x="1" y="0"/>
-                  </transition-display>
-                </transition>
-                <segment>
-                  <node>
-                    <end-node name="error"/>
-                    <node-display orientation="horizontal" x="1" y="0"/>
-                  </node>
-                </segment>
-              </branch>
-            </node>
-            <simple-transition>
-              <transition-display>
-                <bend-point relative-to="source" x="0" y="1"/>
-              </transition-display>
-            </simple-transition>
-            <node>
-              <end-node/>
-              <node-display x="0" y="1"/>
-            </node>
-          </segment>
-        </branch>
-      </node>
-      <simple-transition>
-        <transition-display>
-          <bend-point relative-to="source" x="1" y="0"/>
-        </transition-display>
-      </simple-transition>
-      <node>
-        <end-node/>
-        <node-display orientation="horizontal" x="1" y="0"/>
-      </node>
     </segment>
   </branch>
 </pipeline>
