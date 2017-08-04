@@ -28,7 +28,7 @@ This cartridge also allows you to test the script against Pipelines as well as C
 
 **console.log**<br/>
 **`console.log`**`(output : String) : void`<br/>
-$emsp;The same as **trace**.
+&emsp;The same as **trace**.
 
 ## Examples
 ### Print product details
