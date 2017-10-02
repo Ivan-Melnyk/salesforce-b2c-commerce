@@ -15,10 +15,10 @@ var definedInstances = {
 };
 var console = {
 	log: function (out: String) {
-		output += String(out);
+		output += String(out) + '\n';
 	},
 	info: function (out: String) {
-		output += String(out);
+		output += String(out) + '\n';
 	}
 };
 
@@ -108,13 +108,16 @@ function ds_debug(obj : Object) {
 	// if it's not object
 	if (typeof(obj) != 'object' || empty(obj)) {
 		output += ('<span style="color:#00CC00;">' + (obj === null ? 'null' : typeof(obj)) + "</span>: " + String(obj));
+		output += '</br>';
 		return;
 	}
 	if ((obj instanceof Date) && ('Date' in definedInstances) && !empty(definedInstances.Date) && ('show' in definedInstances.Date) && (typeof(definedInstances.Date.show) == 'function')) {
 		output += ('<span style="color:#800;">Date</span> : <span style="color:#050;">' + definedInstances.Date.display + '</span> { ' + definedInstances.Date.show(obj) + ' }');
+		output += '</br>';
 		return;
 	}
 	output += print(obj);
+	output += '</br>';
 }
 
 function Console (basket : dw.order.Basket) {
