@@ -1,4 +1,6 @@
 # DS_CONSOLE
+MOVED TO https://vmmelnic@bitbucket.org/vmmelnic/public.git
+
 **`ds_console`** Demandware Cartridge.<br/>
 This cartridge allows you to test/perform Demandware script on a fly without changing any file in your existing cartridges.<br/>
 This cartridge also allows you to test the script against Pipelines as well as Controllers.<br/>
