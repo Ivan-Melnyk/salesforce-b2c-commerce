@@ -15,7 +15,7 @@ This cartridge supports SiteGenesis JavaScript Controllers and SFRA storefront a
 &emsp;`Administration -> Sites -> Manage Sites -> [Your Site] -> Settings (Tab) -> Cartridges`
 4. Open the following Controller of your Storefront in your Browser: [Console-Show](https://{sandbox-host-name}/on/demandware.store/Sites-{site-id}-Site/default/Console-Show) *([CConsole-Show](https://{sandbox-host-name}/on/demandware.store/Sites-{site-id}-Site/default/CConsole-Show) - for SiteGenesis JavaScript Controllers version, Pipelines are not supported any more.)*
 5. Now you have to be able to see the SFCC script editor
-![SFCC Console Demo](https://github.com/Ivan-Melnyk/salesforce-b2c-commerce/raw/master/cartridges/ds_console/dsconsole_demo.png "SFCC Console Demo")
+![SFCC Console Demo](https://user-images.githubusercontent.com/41744752/100095575-a081f700-2e52-11eb-86a4-5c483b339514.png "SFCC Console Demo")
 
 Please do not override or call the following properties of `this` in root level of your code snippet:
  - _output
