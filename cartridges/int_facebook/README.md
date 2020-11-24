@@ -1,4 +1,4 @@
 # INT_FACEBOOK
-Sample Facebook Application in Demandware
+Sample Facebook Application in Salesforce B2C Commerce
 --
-PLease be aware of that this cartridge can not be used alone, only with standard **SiteGenesis** cartridges (`app_storefront_controllers`, `app_storefront_core`).
+Please be aware of that this cartridge can not be used alone, only with standard **SiteGenesis** cartridges (`app_storefront_controllers`, `app_storefront_core`).
