@@ -1,25 +1,25 @@
 <iscontent type="text/html" charset="UTF-8" compact="true" />
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>DW Script console</title>
-		<meta charset="utf-8"/>
-		<link rel="shortcut icon" type="image/x-icon" href="${URLUtils.staticURL('/css/favicon.ico')}" />
-		<link rel="stylesheet" href="${URLUtils.staticURL('/css/docs.css')}">
-		<link rel="stylesheet" href="${URLUtils.staticURL('/css/jquery-ui.min.css')}">
-		<link rel="stylesheet" href="${URLUtils.staticURL('/css/jquery-ui.theme.min.css')}">
-		<link rel="stylesheet" href="${URLUtils.staticURL('/lib/codemirror.css')}">
-		<link rel="stylesheet" href="${URLUtils.staticURL('/theme/the-matrix.css')}">
-		<script src="${URLUtils.staticURL('/lib/jquery.js')}"></script>
-		<script src="${URLUtils.staticURL('/lib/jquery-ui.min.js')}"></script>
-		<script src="${URLUtils.staticURL('/lib/codemirror.js')}"></script>
-		<script src="${URLUtils.staticURL('/lib/javascript.js')}"></script>
-	</head>
-	<body>
-		<div style="margin:0 5% 0 5%;min-width:450px;">
-			<h5>DW Script console</h5>
-			<isreplace/>
-			<script src="${URLUtils.staticURL('/lib/complete.js')}"></script>
-		</div>
-	</body>
+    <head>
+        <title>SFCC Console</title>
+        <meta charset="utf-8"/>
+        <link rel="shortcut icon" type="image/x-icon" href="${URLUtils.staticURL('/css/favicon.ico')}" />
+        <link rel="stylesheet" href="${URLUtils.staticURL('/css/docs.css')}">
+        <link rel="stylesheet" href="${URLUtils.staticURL('/css/jquery-ui.min.css')}">
+        <link rel="stylesheet" href="${URLUtils.staticURL('/css/jquery-ui.theme.min.css')}">
+        <link rel="stylesheet" href="${URLUtils.staticURL('/lib/codemirror.css')}">
+        <link rel="stylesheet" href="${URLUtils.staticURL('/theme/the-matrix.css')}">
+        <script src="${URLUtils.staticURL('/lib/jquery-3.5.1.min.js')}"></script>
+        <script src="${URLUtils.staticURL('/lib/jquery-ui.min.js')}"></script>
+        <script src="${URLUtils.staticURL('/lib/codemirror.js')}"></script>
+        <script src="${URLUtils.staticURL('/lib/javascript.js')}"></script>
+    </head>
+    <body>
+        <div style="margin:0 5% 0 5%;min-width:450px;">
+            <h1>SFCC Console</h1>
+            <isreplace/>
+            <script src="${URLUtils.staticURL('/lib/complete.js')}"></script>
+        </div>
+    </body>
 </html>

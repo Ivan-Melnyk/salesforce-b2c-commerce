@@ -1,13 +1,8 @@
-<iscontent type="text/html" charset="UTF-8" compact="true" />
 <isdecorate template="pt_console"/>
-	<form action="${URLUtils.httpContinue()}" style="position:relative;" method="post" id="${pdict.CurrentForms.cmd.htmlName}" autocomplete="off">
-		<textarea name="${pdict.CurrentForms.cmd.commands.htmlName}" id="code" cols="50" rows="7">${pdict.CustomCode || ""}</textarea>
-		<button style="margin-left:25px;" type="submit" value="Evaluate" name="${pdict.CurrentForms.cmd.eval.htmlName}"><img src="${URLUtils.staticURL('/css/favicon.ico')}" style="vertical-align: middle" />Evaluate</button>
-		<span id="tooltip" class="ui-widget ui-helper-clearfix" style="display:inline;position:absolute;bottom:2px;left:0;" title="You can use 'CurrentSession', 'CurrentRequest', 'CurrentCustomer' global objects<br/>as pdict.CurrentSession, pdict.CurrentRequest, pdict.CurrentCustomer<br/>Also you can use Basket inside your code, without any predefines">
-			<span class="ui-state-default ui-corner-all ui-state-active" style="display:table;">
-				<span class="ui-icon ui-icon-lightbulb"></span>
-			</span>
-		</span>
-	</form>
-	<pre><code><isprint value="${ pdict.Result || '' }" encoding="off" /><span class="error"><isprint value="${ pdict.CustomError || '' }" encoding="off" /></span></code></pre>
+    <form action="${pdict.continueUrl}" style="position:relative;" method="post" id="${pdict.consoleForm.htmlName}" autocomplete="off">
+        <textarea name="${pdict.consoleForm.code.htmlName}" id="code" cols="50" rows="7"><isprint value="${pdict.consoleForm.code.getValue() || ''}" encoding="off"/></textarea>
+        <input type="hidden" name="${pdict.tokenName}" value="${pdict.tokenValue}"/>
+        <button type="submit" value="Execute" name="${pdict.consoleForm.evaluate.htmlName}"><img src="${URLUtils.staticURL('/css/favicon.ico')}" style="vertical-align: middle" />Execute</button>
+    </form>
+    <pre><isprint value="${pdict.consoleResult.output}" encoding="off" /><span class="error"><isprint value="${pdict.consoleResult.error}" encoding="off" /></span></pre>
 </isdecorate>
