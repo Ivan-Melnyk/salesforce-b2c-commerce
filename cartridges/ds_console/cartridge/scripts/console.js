@@ -6,34 +6,34 @@ module.exports = {
      */
     _output: '',
 
-    _sfccTypes: {
-        'dw.util.Collection': {
-            type: dw.util.Collection,
-            display: 'dw.util.Collection',
-            show: function (value) { return '[' + value.length + ']'; }
-        },
-        'dw.value.Money': { type: dw.value.Money, display: 'dw.value.Money', show: function (value) { return value; } },
-        'dw.catalog.Product': { type: dw.catalog.Product, display: 'dw.catalog.Product' },
-        'dw.order.Order': { type: dw.order.Order, display: 'dw.order.Order' },
-        Date: { type: Date, display: 'Date', show: function (value) { return value.toString(); } }
-    },
+    // _sfccTypes: {
+    //     'dw.util.Collection': {
+    //         type: dw.util.Collection,
+    //         display: 'dw.util.Collection',
+    //         show: function (value) { return '[' + value.length + ']'; }
+    //     },
+    //     'dw.value.Money': { type: dw.value.Money, display: 'dw.value.Money', show: function (value) { return value; } },
+    //     'dw.catalog.Product': { type: dw.catalog.Product, display: 'dw.catalog.Product' },
+    //     'dw.order.Order': { type: dw.order.Order, display: 'dw.order.Order' },
+    //     Date: { type: Date, display: 'Date', show: function (value) { return value.toString(); } }
+    // },
 
     _template: {
         error: ('<b><span style="color:#f00;">{{key}}</span> : '
         + '<span style="color:#f00;">ERROR</span> = '
         + '<span style="color:#f00;">{{value}}</span></b>'),
-        sfccType: ('<span style="color:#800;">{{key}}</span> : '
-        + '<span style="color:#050;">{{type}}</span> { {{value}}}'),
-        type: ('<span style="color:#666;">{{key}}</span> : '
-        + '<span style="color:#0A0;">{{type}}</span> = '
-        + '<span style="color:#00A;">{{value}}</span>')
+        sfccType: '{{key}} ({{type}}): {{{value}}}',
+        type: '{{key}} ({{type}}): {{value}}',
+        value: '{{type}}: {{value}}',
+        null: 'object: null',
+        boolean: 'boolean: {{boolean}}'
     },
 
     _trace: function (dumpVar) {
         if (module.exports._output && module.exports._output.length > 1) {
             module.exports._output += '\n';
         }
-        module.exports._output += String(dumpVar);
+        module.exports._output += ('"' + String(dumpVar).replace(/"/g, '&quot;') + '"');
     },
 
     /**
@@ -60,30 +60,34 @@ module.exports = {
                 out += module.exports._template.error.replace('{{key}}', key).replace('{{value}}', value);
                 return;
             }
-            if (typeof value === 'function') {
-                out += module.exports._template.sfccType
-                    .replace('{{key}}', key)
-                    .replace('{{type}}', 'function')
-                    .replace('{{value}}', '');
-                return;
-            }
-            Object.keys(module.exports._sfccTypes).forEach(function (di) {
-                if (value instanceof module.exports._sfccTypes[di].type) {
-                    sfccType = module.exports._sfccTypes[di];
-                }
-            });
-            if (sfccType) {
-                out += module.exports._template.sfccType
-                    .replace('{{key}}', key)
-                    .replace('{{type}}', sfccType.display)
-                    .replace('{{value}}', ('show' in sfccType ? (sfccType.show(value) + ' ') : ''));
-                return;
-            }
-            out += module.exports._template.type
-                .replace('{{key}}', key)
-                .replace('{{type}}', (typeof value))
-                .replace('{{value}}', (value === null ? 'null' : typeof value));
+            // Object.keys(module.exports._sfccTypes).forEach(function (di) {
+            //     if (value instanceof module.exports._sfccTypes[di].type) {
+            //         sfccType = module.exports._sfccTypes[di];
+            //     }
+            // });
+            // if (sfccType) {
+            //     out += module.exports._template.sfccType
+            //         .replace('{{key}}', key)
+            //         .replace('{{type}}', sfccType.display)
+            //         .replace('{{value}}', ('show' in sfccType ? (sfccType.show(value) + ' ') : ''));
+            //     return;
+            // }
+            out += module.exports._template.value
+                .replace('{{type}}', '  ' + key)
+                .replace('{{value}}', function () {
+                    var _return = (['string', 'function'].indexOf(typeof value) >= 0 ? '"' : '');
+                    if (value === null) {
+                        _return += 'null';
+                    } else {
+                        _return += String(value);
+                    }
+                    _return += (['string', 'function'].indexOf(typeof value) >= 0 ? '"' : '');
+                    return _return;
+                });
         });
+        if (out.length > 1) {
+            out = ('\n' + out + '\n');
+        }
         return out;
     },
 
@@ -93,15 +97,28 @@ module.exports = {
      */
     _debug: function (dumpVar) {
         if (module.exports._output && module.exports._output.length > 1) {
-            module.exports._output += '\n\n';
+            module.exports._output += '\n';
         }
+        // if it's null
+        if (dumpVar === null) {
+            module.exports._output += module.exports._template.null;
+        // if its' boolean
+        } else if (typeof dumpVar === 'boolean') {
+            module.exports._output += module.exports._template.boolean
+                .replace('{{boolean}}', String(dumpVar));
         // if it's not an object
-        if (!dumpVar || typeof dumpVar !== 'object') {
-            module.exports._output += '<span style="color:#0C0;">';
-            module.exports._output += (dumpVar === null ? 'null' : (typeof dumpVar));
-            module.exports._output += '</span>: ' + String(dumpVar);
+        } else if (!dumpVar || typeof dumpVar !== 'object') {
+            module.exports._output += module.exports._template.value
+                .replace('{{type}}', (typeof dumpVar))
+                .replace('{{value}}', function () {
+                    return (['string', 'function'].indexOf(typeof dumpVar) >= 0 ? '"' : '')
+                        + String(dumpVar)
+                        + (['string', 'function'].indexOf(typeof dumpVar) >= 0 ? '"' : '');
+                });
         } else {
-            module.exports._output += module.exports._print(dumpVar);
+            module.exports._output += module.exports._template.value
+                .replace('{{type}}', (typeof dumpVar))
+                .replace('{{value}}', '{' + module.exports._print(dumpVar) + '}');
         }
     },
 

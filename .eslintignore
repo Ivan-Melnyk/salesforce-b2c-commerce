@@ -1,0 +1,8 @@
+dependencies/**
+doc/**
+docs/**
+cartridges/**/*.min.js
+cartridges/**/lib/*
+cartridges/**/vendors/*
+cartridges/**/static/*
+node_modules/*

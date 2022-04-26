@@ -1,0 +1,120 @@
+{
+    "plugins": ["jsdoc", "sonarjs"],
+    "extends": ["airbnb-base/legacy"],
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 6
+    },
+    "globals": {
+        "PRODUCTION" : false
+    },
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "ignorePatterns": [],
+    "settings": {
+        "jsdoc": {
+            "tagNamePreference": {
+                "emits": "emits",
+                "fires": "emits",
+                "extends": "extends"
+            }
+        }
+    },
+    "rules": {
+        "func-names": 0,
+        "import/no-unresolved": "off",
+        "indent": ["error", 4, { "SwitchCase": 1, "VariableDeclarator": 1 }],
+        "vars-on-top": "off",
+        "global-require": "off",
+        "no-shadow": ["error", { "allow": ["err", "callback"]}],
+        "max-len": ["error", { "code": 130, "comments": 250 }],
+        "no-plusplus": 0,
+        "prefer-const": 2,
+        "no-dupe-keys": 2,
+        "curly": ["error", "all"],
+        "class-methods-use-this": 0,
+        "no-param-reassign": 0,
+        "no-else-return": 0,
+        "no-continue": 0,
+        "one-var": 0,
+        "jsdoc/check-param-names": 1,
+        "jsdoc/check-tag-names": [
+            "warn",
+            {
+                "definedTags": [
+                    "template",
+                    "category",
+                    "subcategory",
+                    "emits"
+                ]
+            }
+        ],
+        "jsdoc/check-types": 1,
+        "jsdoc/newline-after-description": 1,
+        "jsdoc/require-description": 0,
+        "jsdoc/require-param": 1,
+        "jsdoc/require-param-description": 1,
+        "jsdoc/require-param-name": 1,
+        "jsdoc/require-param-type": 1,
+        "jsdoc/require-returns": 1,
+        "jsdoc/require-returns-check": 1,
+        "jsdoc/require-returns-description": 1,
+        "jsdoc/require-returns-type": 1,
+        "jsdoc/valid-types": 0,
+        "jsdoc/no-undefined-types": 0,
+        "sonarjs/no-duplicate-string": 2
+    },
+    "overrides": [
+        {
+            "files": [
+                "**/cartridge/controllers/*.js",
+                "**/cartridge/scripts/**/*.js",
+                "**/cartridge/models/**/*.js",
+                "**/modules/util/**/*.js"
+            ],
+            "env": {
+                "browser": false,
+                "commonjs": true,
+                "es6": false,
+                "jquery": false,
+                "node": false
+            },
+            "rules": {
+                "prefer-arrow-callback": 0,
+                "no-restricted-syntax": 0,
+                "prefer-const": 0
+            },
+            "parserOptions": {
+                "sourceType": "module",
+                "ecmaVersion": 5
+            },
+            "globals": {
+                "dw": false,
+                "customer": false,
+                "session": false,
+                "request": false,
+                "response": false,
+                "empty": false,
+                "PIPELET_ERROR": false,
+                "PIPELET_NEXT": false,
+                "XML": false
+            }
+        },
+        {
+            "files": [
+                "./utils/**/*.js"
+            ],
+            "env": {
+                "browser": false,
+                "commonjs": true,
+                "es6": true,
+                "jquery": false,
+                "node": true
+            }
+        }
+    ]
+}

@@ -5,7 +5,7 @@
 This cartridge allows you to test/perform SFCC script on a fly without changing any file in your existing cartridges, in storefront context.
 This cartridge supports SiteGenesis JavaScript Controllers and SFRA storefront architectures.
 *Please note that the code snippets which you going to test/perform with using this cartridge must be written with considering only storefront context, so for example, if you want to try to test some logic with reading/writing files from/to IMPEX folder - it wont work.*
-*For SFRA version, please make sure that `modules` folder is uploaded to your cartridges on sandbox.*
+*For SFRA version, please make sure that `modules` folder is uploaded to your cartridges on sandbox and you've added at least app_storefront_base cartridge in your cartridge path.*
 *For SGJC no extra requirements, everything needed is already included in this cartridge.*
 
 ## How To

@@ -1,4 +1,50 @@
+# general
 .DS_Store
-node_modules
-*.tern-project
 Thumbs.db
+*.log
+*.swp
+*.map
+*.zip
+*.code-workspace
+.history
+.idea/
+.vscode/
+.styleguide
+.metadata
+DigitalServer
+RemoteSystemsTempFiles
+
+# generated parts
+**/guide/*.html
+**/guide/assets
+**/cartridge/static/**/*.js
+**/cartridge/static/**/*.css
+docs/frontend/_book/
+build/
+documentation/jsdoc/
+
+# unnecessary
+logs/
+types/
+.settings/
+stats.json
+integrity.properties
+assetsManifest.json
+
+# dependencies
+node_modules/
+
+# secrets
+dw.json
+
+cartridges/**/cartridge/static/default/report.html
+
+# tests
+coverage/
+
+# other
+sraClientFacingStatistics.json
+
+# dw-api-types
+dw-api-types/
+cartridges/jsconfig.json

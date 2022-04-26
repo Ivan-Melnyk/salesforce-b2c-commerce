@@ -1,8 +1,67 @@
-<isdecorate template="pt_console"/>
-    <form action="${pdict.continueUrl}" style="position:relative;" method="post" id="${pdict.consoleForm.htmlName}" autocomplete="off">
-        <textarea name="${pdict.consoleForm.code.htmlName}" id="code" cols="50" rows="7"><isprint value="${pdict.consoleForm.code.getValue() || ''}" encoding="off"/></textarea>
-        <input type="hidden" name="${pdict.tokenName}" value="${pdict.tokenValue}"/>
-        <button type="submit" value="Execute" name="${pdict.consoleForm.evaluate.htmlName}"><img src="${URLUtils.staticURL('/css/favicon.ico')}" style="vertical-align: middle" />Execute</button>
-    </form>
-    <pre><isprint value="${pdict.consoleResult.output}" encoding="off" /><span class="error"><isprint value="${pdict.consoleResult.error}" encoding="off" /></span></pre>
+<isdecorate template="pt_console">
+    <div class="container">
+        <h1><isprint value="${pdict.title}" /></h1>
+        <form action="${pdict.executeUrl}" method="post" id="${pdict.consoleForm.htmlName}" autocomplete="off">
+            <textarea name="${pdict.consoleForm.code.htmlName}" id="code" ><isprint value="${pdict.consoleForm.code.value}" encoding="htmlcontent"/></textarea>
+            <input type="hidden" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}"/>
+            <button type="submit" value="${Resource.msg('button.execute', 'console', null)}" id="${pdict.consoleForm.execute.htmlName}" name="${pdict.consoleForm.execute.htmlName}"><isprint value="${Resource.msg('button.execute', 'console', null)}"/></button>
+        </form>
+        <div id="error"></div>
+        <div id="output"></div>
+    </div>
+    <script>
+        var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+            mode: 'javascript',
+            theme: 'midnight',
+            autofocus: true,
+            lineWrapping: true,
+            lineNumbers: true,
+            cursorBlinkRate: 250
+        });
+        var errorEditor = CodeMirror(document.getElementById('error'), {
+            theme: 'mdn-like',
+            mode: 'errormode',
+            lineWrapping: true,
+            readOnly: true,
+            viewportMargin: Infinity,
+            value: ''
+        });
+        var outputEditor = CodeMirror(document.getElementById('output'), {
+            theme: 'mdn-like',
+            mode: 'sfcc',
+            lineWrapping: true,
+            readOnly: true,
+            viewportMargin: Infinity,
+            value: ''
+        });
+        function handleError (message) {
+            outputEditor.setValue('');
+            errorEditor.setValue(message);
+        }
+        function handleSuccess (message) {
+            errorEditor.setValue('');
+            outputEditor.setValue(message);
+        }
+        var form = document.getElementById('${pdict.consoleForm.htmlName}');
+        function submitForm (event) {
+            event.preventDefault();
+            fetch(form.action, {
+                method: form.method,
+                body: new FormData(form)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.consoleResult.error) {
+                    handleError(data.consoleResult.error);
+                } else {
+                    handleSuccess(data.consoleResult.output);
+                }
+            })
+            .catch(error => {
+                handleError(error.message);
+            });
+            return false;
+        }
+        form.addEventListener('submit', submitForm);
+    </script>
 </isdecorate>
